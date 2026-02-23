@@ -769,162 +769,162 @@ src=&quot;https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teach
 
 <p class=MsoNormal>&lt;script type=&quot;text/<span class=SpellE>javascript</span>&quot;&gt;<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>// More API
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>// More API
 functions here:<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>//
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>//
 https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>// the link to
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>// the link to
 your model provided by Teachable Machine export panel<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span><span
 class=SpellE>const</span> URL = <span class=GramE>&quot;./</span><span
 class=SpellE>my_model</span>/&quot;;<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>let model, webcam,
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>let model, webcam,
 <span class=SpellE>labelContainer</span>, <span class=SpellE>maxPredictions</span>;<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>// Load the image
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>// Load the image
 model and setup the webcam<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span><span
 class=SpellE>async</span> function <span class=SpellE><span class=GramE>init</span></span><span
 class=GramE>(</span>) {<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE>const</span> <span class=SpellE>modelURL</span> = URL + &quot;<span
 class=SpellE><span class=GramE>model.json</span></span>&quot;;<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE>const</span> <span class=SpellE>metadataURL</span> = URL + &quot;<span
 class=SpellE><span class=GramE>metadata.json</span></span>&quot;;<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>// load the
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>// load the
 model and metadata<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>// Refer to <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>// Refer to <span
 class=SpellE>tmImage.loadFromFiles</span>() in the API to support files from a
 file picker<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>// or files from
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>// or files from
 your local hard drive<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>// Note: the
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>// Note: the
 pose library adds &quot;<span class=SpellE>tmImage</span>&quot; object to your
 window (<span class=SpellE><span class=GramE>window.tmImage</span></span>)<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>model = await <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>model = await <span
 class=SpellE>tmImage.load</span>(<span class=SpellE>modelURL</span>, <span
 class=SpellE>metadataURL</span>);<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE>maxPredictions</span> = <span class=SpellE><span class=GramE>model.getTotalClasses</span></span>();<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>// Convenience
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>// Convenience
 function to setup a webcam<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE>const</span> flip = true; // whether to flip the webcam<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>webcam = new <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>webcam = new <span
 class=SpellE>tmImage.Webcam</span>(200, 200, flip); // width, height, flip<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>await <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>await <span
 class=SpellE><span class=GramE>webcam.setup</span></span>(); // request access
 to the webcam<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>await <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>await <span
 class=SpellE><span class=GramE>webcam.play</span></span>();<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE><span class=GramE>window.requestAnimationFrame</span></span>(loop);<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>// append
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>// append
 elements to the DOM<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=GramE>document.getElementById</span>(&quot;webcam-container&quot;).appendChild(webcam.canvas);<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE>labelContainer</span> = <span class=SpellE><span class=GramE>document.getElementById</span></span>(&quot;label-container&quot;);<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>for (let <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>for (let <span
 class=SpellE>i</span> = 0; <span class=SpellE>i</span> &lt; <span class=SpellE>maxPredictions</span>;
 <span class=SpellE>i</span>++) <span class=GramE>{ /</span>/ and class labels<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>            </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â Â Â Â Â  </span><span
 class=SpellE>labelContainer.appendChild</span>(<span class=SpellE><span
 class=GramE>document.createElement</span></span>(&quot;div&quot;));<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></p>
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>}<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>}<o:p></o:p></p>
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>}<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span><span
 class=SpellE>async</span> function <span class=GramE>loop(</span>) {<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE><span class=GramE>webcam.update</span></span>(); // update the
 webcam frame<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>await <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>await <span
 class=GramE>predict(</span>);<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE><span class=GramE>window.requestAnimationFrame</span></span>(loop);<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>}<o:p></o:p></p>
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>}<o:p></o:p></p>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>// run the webcam
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>// run the webcam
 image through the image model<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span><span
 class=SpellE>async</span> function <span class=GramE>predict(</span>) {<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>// predict can
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>// predict can
 take in an image, video or canvas html element<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span><span
 class=SpellE>const</span> prediction = await <span class=SpellE><span
 class=GramE>model.predict</span></span>(<span class=SpellE>webcam.canvas</span>);<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>     </span><span
-style='mso-spacerun:yes'>   </span>for (let <span class=SpellE>i</span> = 0; <span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â  </span><span
+style='mso-spacerun:yes'>Â Â Â </span>for (let <span class=SpellE>i</span> = 0; <span
 class=SpellE>i</span> &lt; <span class=SpellE>maxPredictions</span>; <span
 class=SpellE>i</span>++) {<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>            </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â Â Â Â Â  </span><span
 class=SpellE>const</span> <span class=SpellE>classPrediction</span> =<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>               
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â 
 </span>prediction[<span class=SpellE>i</span><span class=GramE>].<span
 class=SpellE>className</span></span> + &quot;: &quot; + prediction[<span
 class=SpellE>i</span>].<span class=SpellE>probability.toFixed</span>(2);<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>            </span><span
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â Â Â Â Â  </span><span
 class=SpellE>labelContainer.childNodes</span>[<span class=SpellE>i</span><span
 class=GramE>].<span class=SpellE>innerHTML</span></span> = <span class=SpellE>classPrediction</span>;<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></p>
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â Â Â Â Â  </span>}<o:p></o:p></p>
 
-<p class=MsoNormal><span style='mso-spacerun:yes'>    </span>}<o:p></o:p></p>
+<p class=MsoNormal><span style='mso-spacerun:yes'>Â Â Â  </span>}<o:p></o:p></p>
 
 <p class=MsoNormal>&lt;/script&gt;</p>
 
@@ -933,3 +933,4 @@ class=GramE>].<span class=SpellE>innerHTML</span></span> = <span class=SpellE>cl
 </body>
 
 </html>
+
