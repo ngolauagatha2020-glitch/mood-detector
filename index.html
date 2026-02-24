@@ -2,49 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teachable Machine Image Model</title>
-
-    <!-- TensorFlow.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-
-    <!-- Teachable Machine Image Library -->
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #f4f6f9;
-            padding: 20px;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+        h1 { font-size: 2rem; margin-bottom: 8px; color: #38bdf8; }
+        p.subtitle { color: #94a3b8; margin-bottom: 24px; }
+
+        #webcam-container canvas {
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
         }
 
-        h1 {
-            margin-bottom: 20px;
+        #label-container {
+            margin-top: 24px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .label-row {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 10px 16px;
+            margin-bottom: 10px;
+        }
+        .label-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        .bar-bg {
+            background: #334155;
+            border-radius: 999px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            transition: width 0.2s ease;
         }
 
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+            margin-top: 24px;
+            padding: 12px 32px;
+            background: #38bdf8;
+            color: #0f172a;
             border: none;
-            border-radius: 6px;
-            background: #4CAF50;
-            color: white;
-            transition: 0.3s;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #7dd3fc; }
+        button:disabled {
+            background: #334155;
+            color: #64748b;
+            cursor: not-allowed;
         }
 
-        button:hover {
-            background: #45a049;
+        #status {
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            min-height: 20px;
+            text-align: center;
         }
-
-        #webcam-container {
-            margin-top: 20px;
-        }
-
-        #label-container div {
-            margin: 5px 0;
-            font-size: 18px;
-        }
+        #status.error { color: #f87171; }
     </style>
 </head>
 
