@@ -63,8 +63,19 @@
     let labelContainer;
     let maxPredictions;
 
+    function setStatus(msg, isError = false) {
+        const el = document.getElementById("status");
+        el.textContent = msg;
+        el.className = isError ? "error" : "";
+    }
+
     // Initialize model and webcam
     async function init() {
+
+        const btn = document.getElementById("startBtn");
+        btn.disabled = true;
+        setStatus("Loading model...");
+        
         try {
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
@@ -73,49 +84,75 @@
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
-            // Setup webcam
-            const flip = true;
-            webcam = new tmImage.Webcam(200, 200, flip);
-            await webcam.setup();
-            await webcam.play();
+            setStatus("Requesting camera access...");
+
+            // ✅ FIX 2: Wrap webcam setup in try/catch so camera errors are visible
+            try {
+                const flip = true;
+                webcam = new tmImage.Webcam(400, 400, flip);
+                await webcam.setup(); // asks for camera permission
+                await webcam.play();
+            } catch (camErr) {
+                // ✅ FIX 3: Show a clear message if camera is blocked or unavailable
+                if (camErr.name === "NotAllowedError" || camErr.name === "PermissionDeniedError") {
+                    setStatus("❌ Camera permission denied. Please allow camera access in your browser settings and try again.", true);
+                } else if (camErr.name === "NotFoundError") {
+                    setStatus("❌ No camera found on this device.", true);
+                } else {
+                    setStatus("❌ Camera error: " + camErr.message, true);
+                }
+                btn.disabled = false;
+                return;
+            }
 
             window.requestAnimationFrame(loop);
 
-            // Add webcam canvas to page
-            document
-                .getElementById("webcam-container")
-                .appendChild(webcam.canvas);
+            // Append webcam canvas
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
 
-            // Prepare label container
+            // Build label rows
             labelContainer = document.getElementById("label-container");
             labelContainer.innerHTML = "";
-
             for (let i = 0; i < maxPredictions; i++) {
-                labelContainer.appendChild(document.createElement("div"));
+                const row = document.createElement("div");
+                row.className = "label-row";
+                row.innerHTML = `
+                    <div class="label-name">
+                        <span class="label-text">Loading...</span>
+                        <span class="label-pct">0%</span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width:0%"></div></div>
+                `;
+                labelContainer.appendChild(row);
             }
 
-        } catch (error) {
-            console.error("Error initializing model:", error);
-            alert("Failed to load model or webcam.");
+            btn.textContent = "Camera Running";
+            setStatus("✅ Detection active.");
+
+        } catch (err) {
+            setStatus("❌ Failed to load model. Check your MODEL_URL or internet connection. " + err.message, true);
+            btn.disabled = false;
         }
     }
 
-    // Continuous prediction loop
     async function loop() {
         webcam.update();
         await predict();
         window.requestAnimationFrame(loop);
     }
 
-    // Run prediction
     async function predict() {
         const predictions = await model.predict(webcam.canvas);
 
-        predictions.forEach((prediction, index) => {
-            const probability = (prediction.probability * 100).toFixed(2);
-            labelContainer.childNodes[index].innerHTML =
-                `${prediction.className}: ${probability}%`;
-        });
+        for (let i = 0; i < maxPredictions; i++) {
+            const p = predictions[i];
+            const pct = Math.round(p.probability * 100);
+            const row = labelContainer.children[i];
+
+            row.querySelector(".label-text").textContent = p.className;
+            row.querySelector(".label-pct").textContent = pct + "%";
+            row.querySelector(".bar-fill").style.width = pct + "%";
+        }
     }
 </script>
 
